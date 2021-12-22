@@ -5,6 +5,7 @@
 //Requirements
 const puppeteer = require('puppeteer')
 const randomUserAgent = require('random-useragent')
+const fs = require('fs') // fs == filesystem
 const { url } = require('./config')
 
 ;
@@ -43,7 +44,10 @@ const { url } = require('./config')
     const year = date.getFullYear()
     const fullDate = `${day}/${month}/${year}`
 
-    console.log(fullDate + ' | ' + nameTrim + ' | ' + priceTrim)
+    // Save data to txt file
+    const logger = fs.createWriteStream('log.txt', { flags: 'a' })
+    logger.write(`${fullDate} | ${nameTrim} | ${priceTrim}\n`)
+    logger.close()
 
     // Close Browser
     await browser.close()
