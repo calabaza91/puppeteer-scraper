@@ -36,7 +36,14 @@ const { url } = require('./config')
     const nameTrim = name.trim()
     const priceTrim = price.trim()
 
-    console.log('Name: ' + nameTrim + '\nPrice: ' + priceTrim)
+    // Get current date
+    const date = new Date()
+    const day = date.getDate()
+    const month = date.getMonth() + 1
+    const year = date.getFullYear()
+    const fullDate = `${day}/${month}/${year}`
+
+    console.log(fullDate + ' | ' + nameTrim + ' | ' + priceTrim)
 
     // Close Browser
     await browser.close()
